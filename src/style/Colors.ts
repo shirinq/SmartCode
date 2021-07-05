@@ -1,0 +1,7 @@
+export const BLACK = '#000000'
+export const WHITE = '#ffffff'
+export const MEDIUM = '#717f8d'
+export const PRIMARY = '#3c3aec'
+export const PRIMARY_DARK = '#000051'
+export const SUCCESS = '#29d289'
+export const ERROR = '#E6191A'
