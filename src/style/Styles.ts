@@ -42,6 +42,13 @@ export const Container: ViewStyle = {
   backgroundColor: WHITE
 };
 
+export const RowContainer: ViewStyle = {
+  flexDirection: 'row',
+  alignSelf: 'stretch',
+  alignItems: 'center',
+  justifyContent: 'space-between'
+};
+
 export const ButtonStyle: ViewStyle | TextStyle | ImageStyle = {
   backgroundColor: BLACK,
   width: 'auto',
@@ -65,37 +72,37 @@ export const Shadow1 = {
 };
 
 export const Shadow3 = {
-  shadowColor: "#000",
+  shadowColor: '#000',
   shadowOffset: {
     width: 0,
-    height: 1,
+    height: 1
   },
   shadowOpacity: 0.22,
   shadowRadius: 2.22,
-  elevation: 3,
+  elevation: 3
 };
 
 export const Shadow5 = {
-  shadowColor: "#000",
+  shadowColor: '#000',
   shadowOffset: {
     width: 0,
-    height: 2,
+    height: 2
   },
   shadowOpacity: 0.25,
   shadowRadius: 3.84,
 
-  elevation: 5,
+  elevation: 5
 };
 
 export const Shadow7 = {
-  shadowColor: "#000",
+  shadowColor: '#000',
   shadowOffset: {
     width: 0,
-    height: 3,
+    height: 3
   },
   shadowOpacity: 0.29,
   shadowRadius: 4.65,
 
-  elevation: 7,
+  elevation: 7
 };
 

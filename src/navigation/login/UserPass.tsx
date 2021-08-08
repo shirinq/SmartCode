@@ -25,6 +25,7 @@ const UserPass = ({ navigation }: Props) => {
       }}
               containerStyle={{ width: "100%", marginVertical: 30 }} titleStyle={styles.btnTitle} />
       <Button title="رمز عبور خود را فراموش کرده اید؟" type="clear" containerStyle={{ width: "100%" }} titleStyle={[styles.btnTitle, { fontSize: onNormalize(12), color: BLACK }]} />
+      <Button title="عضو سایت نیستید؟ ثبت نام" type="clear" containerStyle={{ width: "100%" }} titleStyle={[styles.btnTitle, { fontSize: onNormalize(12), color: BLACK }]} />
       <Footer />
     </View>
   );

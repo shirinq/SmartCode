@@ -25,12 +25,12 @@ export type Props = { navigation: StackNavigationProp<RootStackParamList> };
 
 const Navigation = () => {
   return (
-    <Stack.Navigator initialRouteName={SPLASH}>
+    <Stack.Navigator initialRouteName={HOME}>
       <Stack.Screen name={SPLASH} component={Splash} options={{ headerShown: false }} />
       <Stack.Screen name={LOGIN} component={Login} options={onHeaderBasicStyle('')} />
       <Stack.Screen name={LOGIN_UP} component={UserPass} options={onHeaderBasicStyle('')} />
       <Stack.Screen name={AUTH} component={Authentication} options={{ headerShown: false }} />
-      <Stack.Screen name={HOME} component={Home} options={onHeaderBasicStyle('Anamaka cloud')} />
+      <Stack.Screen name={HOME} component={Home} options={{ headerShown: false }} />
       <Stack.Screen name={CODE} component={Code} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
