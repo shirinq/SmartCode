@@ -7,6 +7,7 @@ import { Props } from '../index';
 import { HOME } from '../../utils/Const';
 import TextInput from '../../component/TextInput';
 import { Icon } from 'react-native-elements';
+import { StackActions } from '@react-navigation/native';
 
 
 const Authentication = ({ navigation }: Props) => {
@@ -20,7 +21,7 @@ const Authentication = ({ navigation }: Props) => {
         setTitle('رمز دوم');
     } else {
       navigation.popToTop();
-      navigation.replace(HOME);
+      navigation.dispatch(StackActions.replace(HOME));
     }
   };
 

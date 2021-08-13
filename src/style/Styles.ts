@@ -1,8 +1,8 @@
 import { WHITE, BLACK } from './Colors';
 import { Platform, Dimensions, PixelRatio, ViewStyle, TextStyle, ImageStyle } from 'react-native';
 
-export const MainFontBold = 'sansBold';
-export const MainFont = 'sans';
+export const MainFontBold = 'samimBold';
+export const MainFont = 'samim';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const scale = SCREEN_WIDTH / 375;
@@ -54,6 +54,17 @@ export const ButtonStyle: ViewStyle | TextStyle | ImageStyle = {
   width: 'auto',
   height: onNormalize(48),
   borderRadius: 25,
+  alignItems: 'center',
+  justifyContent: 'center',
+  alignContent: 'center'
+};
+
+export const ButtonOutStyle: ViewStyle | TextStyle | ImageStyle = {
+  width: 'auto',
+  height: onNormalize(48),
+  borderRadius: 25,
+  borderWidth:2,
+  borderColor:BLACK,
   alignItems: 'center',
   justifyContent: 'center',
   alignContent: 'center'

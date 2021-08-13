@@ -30,6 +30,8 @@
 		8E7DC11F12D74021ACCCED7A /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1C77F163F5042E98340BD4A /* Octicons.ttf */; };
 		6BA281BB3BB44DABA989A424 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AB7A960D07643C5AB9C831B /* SimpleLineIcons.ttf */; };
 		670BC626113945DA89D498B4 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D62BE7CD5E74F83BD233172 /* Zocial.ttf */; };
+		3616EA5B369E48769AC140DA /* samim.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D79C925F3542DE9808A107 /* samim.ttf */; };
+		F3441FA3BA1E49109631B4E8 /* samimBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9AEF6C6864B40419A9BFECE /* samimBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		A1C77F163F5042E98340BD4A /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		1AB7A960D07643C5AB9C831B /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		7D62BE7CD5E74F83BD233172 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F5D79C925F3542DE9808A107 /* samim.ttf */ = {isa = PBXFileReference; name = "samim.ttf"; path = "../src/assets/font/samim.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A9AEF6C6864B40419A9BFECE /* samimBold.ttf */ = {isa = PBXFileReference; name = "samimBold.ttf"; path = "../src/assets/font/samimBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,8 @@
 				A1C77F163F5042E98340BD4A /* Octicons.ttf */,
 				1AB7A960D07643C5AB9C831B /* SimpleLineIcons.ttf */,
 				7D62BE7CD5E74F83BD233172 /* Zocial.ttf */,
+				F5D79C925F3542DE9808A107 /* samim.ttf */,
+				A9AEF6C6864B40419A9BFECE /* samimBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -295,6 +301,8 @@
 				8E7DC11F12D74021ACCCED7A /* Octicons.ttf in Resources */,
 				6BA281BB3BB44DABA989A424 /* SimpleLineIcons.ttf in Resources */,
 				670BC626113945DA89D498B4 /* Zocial.ttf in Resources */,
+				3616EA5B369E48769AC140DA /* samim.ttf in Resources */,
+				F3441FA3BA1E49109631B4E8 /* samimBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

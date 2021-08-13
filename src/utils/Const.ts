@@ -10,3 +10,5 @@ export const PASS2 = 'Password2';
 export const SERVICES = 'Services';
 export const SETTING = 'Setting';
 export const LOGOUT = 'Logout';
+export const DateTimeFormat = 'YYYY/MM/DD - HH:mm';
+export const DateFormat = 'YYYY/MM/DD';

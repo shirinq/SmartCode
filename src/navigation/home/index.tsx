@@ -1,6 +1,6 @@
-import React from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
+import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './HomeScreen';
 import { Icon } from 'react-native-elements';
 import { MainFont, MainFontBold, onHeaderBasicStyle, onNormalize } from '../../style/Styles';
@@ -8,6 +8,10 @@ import { BLACK, MEDIUM } from '../../style/Colors';
 import { LOGOUT, MAIN, PASS1, PASS2, SERVICES, SETTING } from '../../utils/Const';
 import ChangePass1 from '../authentication/ChangePass1';
 import ChangePass2 from '../authentication/ChangePass2';
+import Setting from '../setting';
+import Exit from '../../component/dialog/Exit';
+import Service from '../service';
+import { Props } from '../index';
 
 type DrawerList = {
   Main: undefined,
@@ -19,17 +23,27 @@ type DrawerList = {
 }
 const Drawer = createDrawerNavigator<DrawerList>();
 
-const Empty = () => {
-  return <View />;
-};
-
 
 const Home = () => {
+  const [visible, setVisible] = useState(false);
 
   return (
-    <Drawer.Navigator initialRouteName={MAIN} screenOptions={{
+    <Drawer.Navigator initialRouteName={MAIN} drawerContent={props => <DrawerContentScrollView {...props}>
+      <Exit visible={visible} setVisible={setVisible} />
+      <DrawerItemList {...props} />
+      <DrawerItem
+        labelStyle={styles.label}
+        label="خروج"
+        icon={() => <Icon name="log-out" type="feather" />}
+        onPress={() => {
+          props.navigation.closeDrawer();
+          setVisible(true);
+        }}
+      />
+    </DrawerContentScrollView>} screenOptions={{
       drawerType: 'front',
       drawerPosition: 'left',
+      swipeEnabled: true,
       drawerActiveTintColor: MEDIUM,
       ...onHeaderBasicStyle('')
     }}>
@@ -41,28 +55,32 @@ const Home = () => {
       <Drawer.Screen
         name={PASS1}
         component={ChangePass1}
-        options={{ title: 'تغییر رمز اول', drawerLabel: 'تغییر رمز اول', drawerLabelStyle: styles.label, drawerIcon: () => <Icon name="lock" type="feather" /> }}
+        options={{
+          title: 'تغییر رمز اول', drawerLabel: 'تغییر رمز اول', drawerLabelStyle: styles.label, drawerIcon: () => <View>
+            <Icon name="lock" type="feather" />
+            <Text style={{ position: 'absolute', alignSelf: 'center', top: 9, fontSize: onNormalize(12) }}>1</Text>
+          </View>
+        }}
       />
       <Drawer.Screen
         name={PASS2}
         component={ChangePass2}
-        options={{ title: 'تغییر رمز دوم', drawerLabel: 'تغییر رمز دوم', drawerLabelStyle: styles.label, drawerIcon: () => <Icon name="lock" type="feather" /> }}
+        options={{
+          title: 'تغییر رمز دوم', drawerLabel: 'تغییر رمز دوم', drawerLabelStyle: styles.label, drawerIcon: () => <View>
+            <Icon name="lock" type="feather" />
+            <Text style={{ position: 'absolute', alignSelf: 'center', top: 9, fontSize: onNormalize(12) }}>2</Text>
+          </View>
+        }}
       />
       <Drawer.Screen
         name={SERVICES}
-        component={Empty}
+        component={Service}
         options={{ title: 'سرویس های فعال', drawerLabel: 'سرویس های فعال', drawerLabelStyle: styles.label, drawerIcon: () => <Icon name="package" type="feather" /> }}
       />
       <Drawer.Screen
         name={SETTING}
-        component={Empty}
+        component={Setting}
         options={{ title: 'تنظیمات', drawerLabel: 'تنظیمات', drawerLabelStyle: styles.label, drawerIcon: () => <Icon name="settings" type="feather" /> }}
-      />
-
-      <Drawer.Screen
-        name={LOGOUT}
-        component={Empty}
-        options={{ title: 'خروج', drawerLabel: 'خروج', drawerLabelStyle: styles.label, drawerIcon: () => <Icon name="log-out" type="feather" /> }}
       />
     </Drawer.Navigator>
   );
