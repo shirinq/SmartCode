@@ -25,7 +25,7 @@ export type Props = { navigation: StackNavigationProp<RootStackParamList> };
 
 const Navigation = () => {
   return (
-    <Stack.Navigator initialRouteName={HOME}>
+    <Stack.Navigator initialRouteName={SPLASH}>
       <Stack.Screen name={SPLASH} component={Splash} options={{ headerShown: false }} />
       <Stack.Screen name={LOGIN} component={Login} options={onHeaderBasicStyle('')} />
       <Stack.Screen name={LOGIN_UP} component={UserPass} options={onHeaderBasicStyle('')} />
