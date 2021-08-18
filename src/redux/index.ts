@@ -1,6 +1,6 @@
 import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
 import {applyMiddleware} from 'redux';
-import reducers from '../reduxSlice';
+import reducers from './slice';
 import createSagaMiddleware from 'redux-saga';
 import {createInjectorsEnhancer} from 'redux-injectors';
 

@@ -5,7 +5,7 @@ import HomeScreen from './HomeScreen';
 import { Icon } from 'react-native-elements';
 import { MainFont, MainFontBold, onHeaderBasicStyle, onNormalize } from '../../style/Styles';
 import { BLACK, MEDIUM } from '../../style/Colors';
-import { LOGOUT, MAIN, PASS1, PASS2, SERVICES, SETTING } from '../../utils/Const';
+import { LOGOUT, MAIN, NOTIF_ARCHIVE, PASS1, PASS2, SERVICES, SETTING } from '../../utils/Const';
 import ChangePass1 from '../authentication/ChangePass1';
 import ChangePass2 from '../authentication/ChangePass2';
 import Setting from '../setting';
@@ -19,28 +19,15 @@ type DrawerList = {
   Password2: undefined,
   Services: undefined,
   Setting: undefined,
-  Logout: undefined,
+  NotificationArchive: undefined
 }
 const Drawer = createDrawerNavigator<DrawerList>();
 
 
 const Home = () => {
-  const [visible, setVisible] = useState(false);
 
   return (
-    <Drawer.Navigator initialRouteName={MAIN} drawerContent={props => <DrawerContentScrollView {...props}>
-      <Exit visible={visible} setVisible={setVisible} />
-      <DrawerItemList {...props} />
-      <DrawerItem
-        labelStyle={styles.label}
-        label="خروج"
-        icon={() => <Icon name="log-out" type="feather" />}
-        onPress={() => {
-          props.navigation.closeDrawer();
-          setVisible(true);
-        }}
-      />
-    </DrawerContentScrollView>} screenOptions={{
+    <Drawer.Navigator initialRouteName={MAIN} screenOptions={{
       drawerType: 'front',
       drawerPosition: 'left',
       swipeEnabled: true,
@@ -76,6 +63,11 @@ const Home = () => {
         name={SERVICES}
         component={Service}
         options={{ title: 'سرویس های فعال', drawerLabel: 'سرویس های فعال', drawerLabelStyle: styles.label, drawerIcon: () => <Icon name="package" type="feather" /> }}
+      />
+      <Drawer.Screen
+        name={NOTIF_ARCHIVE}
+        component={() => null}
+        options={{ title: 'اعلان ها', drawerLabel: 'اعلان ها', drawerLabelStyle: styles.label, drawerIcon: () => <Icon name="bell" type="feather" /> }}
       />
       <Drawer.Screen
         name={SETTING}
