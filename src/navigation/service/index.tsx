@@ -7,9 +7,11 @@ import { Modalize } from 'react-native-modalize';
 import { BLACK } from '../../style/Colors';
 import BottomSheetItem from '../../component/BottonSheetItem';
 import { Icon } from 'react-native-elements';
+import { useTranslation } from 'react-i18next';
 
 const Service = () => {
   const bottomSheetModalRef = useRef<Modalize>(null);
+  const {t} = useTranslation()
   const onOpen = () => {
     bottomSheetModalRef.current?.open();
   };
@@ -25,8 +27,8 @@ const Service = () => {
         logo: 'https://kasbokarnews.ir/wp-content/uploads/2020/09/20200921123116.jpg'
       }]} renderItem={({ item }) => <ServiceItem onOpen={onOpen} name={item.name} date={item.createDate} icon={item.logo} />} />
       <BottomSheet bottomSheetModalRef={bottomSheetModalRef}>
-        <BottomSheetItem label='حذف' onPress={()=>{}} icon={<Icon name='trash' type='feather' containerStyle={{marginLeft:15}} size={onNormalize(20)}/>}/>
-        <BottomSheetItem label='غیر فعال' onPress={()=>{}} icon={<Icon name='power' type='feather' containerStyle={{marginLeft:15}} size={onNormalize(20)}/>}/>
+        <BottomSheetItem label={t('delete')} onPress={()=>{}} icon={<Icon name='trash' type='feather' containerStyle={{marginLeft:15}} size={onNormalize(20)}/>}/>
+        <BottomSheetItem label={t('disabled')} onPress={()=>{}} icon={<Icon name='power' type='feather' containerStyle={{marginLeft:15}} size={onNormalize(20)}/>}/>
       </BottomSheet>
     </View>
   );

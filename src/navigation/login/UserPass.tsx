@@ -4,12 +4,12 @@ import { BLACK, MEDIUM, WHITE } from '../../style/Colors';
 import { Avatar, Button, Icon, Input } from 'react-native-elements';
 import { ButtonStyle, MainFont, MainFontBold, onNormalize } from '../../style/Styles';
 import Footer from './Footer';
-import { Props } from '../index';
+import { NavProps } from '../index';
 import TextInput from '../../component/TextInput';
 import { AUTH } from '../../utils/Const';
 import { StackActions } from '@react-navigation/native';
 
-const UserPass = ({ navigation }: Props) => {
+const UserPass = ({ navigation }: NavProps) => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={WHITE} />

@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { BLACK, MEDIUM, PRIMARY, WHITE } from '../../style/Colors';
+import { BLACK, MEDIUM, WHITE } from '../../style/Colors';
 import { Container, MainFont, MainFontBold, onNormalize, Shadow7 } from '../../style/Styles';
 import Header from './Header';
-import { Props } from '../index';
+import { NavProps } from '../index';
 import { HOME } from '../../utils/Const';
 import TextInput from '../../component/TextInput';
 import { Icon } from 'react-native-elements';
 import { StackActions } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 
-const Authentication = ({ navigation }: Props) => {
+const Authentication = ({ navigation }: NavProps) => {
+  const { t } = useTranslation();
   const [step, setStep] = useState<number>(1);
-  const [title, setTitle] = useState<string>('رمز اول');
+  const [title, setTitle] = useState<string>(t('first'));
 
   const onNext = () => {
     if (step < 2) {
       setStep(step + 1);
       if (step + 1 == 1)
-        setTitle('رمز دوم');
+        setTitle(t('second'));
     } else {
       navigation.popToTop();
       navigation.dispatch(StackActions.replace(HOME));
@@ -30,17 +32,17 @@ const Authentication = ({ navigation }: Props) => {
       <StatusBar barStyle="dark-content" backgroundColor={WHITE} />
       <Header step={step} stepCount={2} title={title} />
       <TouchableOpacity style={[styles.nextBtn]} onPress={onNext}>
-        <Text style={styles.nextLabel}>{'ثبت و ادامه'}</Text>
+        <Text style={styles.nextLabel}>{t('continue')}</Text>
       </TouchableOpacity>
       <View style={{ marginTop: onNormalize(80) }}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitle}>برای استفاده از امکانات کیف پول و مواردی که بعدا به وجود خواهد آمد.</Text>
+        <Text style={styles.subtitle}>{step == 1 ? t('descriptionP1') : t('description2')}</Text>
         <View style={{ marginTop: 50, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center' }}>
-          <TextInput placeholder="رمز" blurOnSubmit
-                     rightIcon={<Icon name="eye" type="feather" size={onNormalize(20)} color={PRIMARY} />}
+          <TextInput placeholder={t('password')} blurOnSubmit
+                     rightIcon={<Icon name="eye" type="feather" size={onNormalize(20)} color={BLACK} />}
                      leftIcon={<Icon name="lock" type="feather" size={onNormalize(20)} color={MEDIUM} />} inputStyle={{ textAlign: 'left' }} />
-          <TextInput placeholder="تکرار رمز" blurOnSubmit
-                     rightIcon={<Icon name="eye" type="feather" size={onNormalize(20)} color={PRIMARY} />}
+          <TextInput placeholder={t('confirmPass')} blurOnSubmit
+                     rightIcon={<Icon name="eye" type="feather" size={onNormalize(20)} color={BLACK} />}
                      leftIcon={<Icon name="lock" type="feather" size={onNormalize(20)} color={MEDIUM} />} inputStyle={{ textAlign: 'left' }} />
         </View>
       </View>

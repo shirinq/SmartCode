@@ -1,8 +1,9 @@
 import React, { PropsWithRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { BLACK, PRIMARY, WHITE } from '../../style/Colors';
+import { BLACK, WHITE } from '../../style/Colors';
 import { MainFont, MainFontBold, onNormalize, Shadow1 } from '../../style/Styles';
 import { Icon, LinearProgress } from 'react-native-elements';
+import { useTranslation } from 'react-i18next';
 
 interface Props extends PropsWithRef<any>{
   step:number,
@@ -11,11 +12,13 @@ interface Props extends PropsWithRef<any>{
 }
 
 const Header = ({step, stepCount, title}:Props) =>{
+  const {t} = useTranslation();
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <View>
-          <Text style={styles.subtitle}>{`مرحله ${step}/${stepCount}`}</Text>
+          <Text style={styles.subtitle}>{`${t('step')} ${step}/${stepCount}`}</Text>
           <Text style={styles.title}>{title}</Text>
         </View>
         <View style={styles.circle}>

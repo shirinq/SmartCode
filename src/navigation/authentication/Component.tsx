@@ -4,22 +4,25 @@ import { ButtonStyle, Container, MainFont, MainFontBold, onNormalize } from '../
 import { BLACK } from '../../style/Colors';
 import TextInput from '../../component/TextInput';
 import { Button } from 'react-native-elements';
+import { useTranslation } from 'react-i18next';
 
 interface Props extends PropsWithChildren<any> {
-  passName: string,
+  passNum: number,
   onConfirm: (args?: any) => void,
 }
 
-const PassComponent = ({ passName, onConfirm, children }: Props) => {
+const PassComponent = ({ passNum, onConfirm, children }: Props) => {
+  const {t} = useTranslation()
+
   return (
     <ScrollView contentContainerStyle={Container}>
-      <Text style={styles.title}>{`تغییر رمز ` + passName}</Text>
-      <TextInput placeholder="رمز عبور فعلی" containerStyle={{ marginBottom: 10 }} keyboardType={'numeric'} />
-      <TextInput placeholder="رمز جدید" keyboardType={'numeric'} />
-      <TextInput placeholder="تکرار رمز جدید" keyboardType={'numeric'} />
+      <Text style={styles.title}>{t('changePass'+passNum)}</Text>
+      <TextInput placeholder={t('currentPass')} containerStyle={{ marginBottom: 10 }} keyboardType={'numeric'} />
+      <TextInput placeholder={t('newPass')} keyboardType={'numeric'} />
+      <TextInput placeholder={t('confirmPass')} keyboardType={'numeric'} />
       {children}
-      <Button title="ثبت" type="solid" buttonStyle={ButtonStyle} onPress={onConfirm} containerStyle={{ width: '100%', marginVertical: 30 }} titleStyle={styles.btnTitle} />
-      <Button title="رمز عبور خود را فراموش کرده اید؟" type="clear" containerStyle={{ width: "100%" }} titleStyle={[styles.btnTitle, { fontSize: onNormalize(12), color: BLACK }]} />
+      <Button title={t('updatePass')} type="solid" buttonStyle={ButtonStyle} onPress={onConfirm} containerStyle={{ width: '100%', marginVertical: 30 }} titleStyle={styles.btnTitle} />
+      <Button title={t('forgetPass')} type="clear" containerStyle={{ width: "100%" }} titleStyle={[styles.btnTitle, { fontSize: onNormalize(12), color: BLACK }]} />
     </ScrollView>
   );
 };

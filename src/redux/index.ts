@@ -1,22 +1,20 @@
-import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
-import {applyMiddleware} from 'redux';
-import reducers from './slice';
-import createSagaMiddleware from 'redux-saga';
-import {createInjectorsEnhancer} from 'redux-injectors';
+import { AnyAction, CombinedState, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+//import createSagaMiddleware from 'redux-saga';
+import combinedReducers from './slice';
 
 
-const sagaMiddleware = createSagaMiddleware();
-const {run: runSaga} = sagaMiddleware;
-const middlewares = [...getDefaultMiddleware({thunk: false}), sagaMiddleware];
+//const sagaMiddleware = createSagaMiddleware();
+const middleware = [...getDefaultMiddleware({ thunk: false, serializableCheck: false, immutableCheck: false }) /*sagaMiddleware*/];
 
-const enhancers = [
-  applyMiddleware(...middlewares),
-  createInjectorsEnhancer({runSaga, createReducer: reducers})
-];
 
-export default function onConfigureStore() {
-  return configureStore({
-    reducer: reducers(),
-    enhancers
-  });
-}
+const rootReducer = (state: CombinedState<ReturnType<typeof combinedReducers>> | undefined, action: AnyAction) => {
+  return combinedReducers(state, action);
+};
+
+const store = configureStore({
+  reducer: rootReducer,
+  middleware
+});
+
+//sagaMiddleware.run(rootSaga);
+export default store;

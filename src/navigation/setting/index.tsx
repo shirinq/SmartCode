@@ -8,6 +8,7 @@ import Language from '../../component/dialog/Language';
 import Exit from '../../component/dialog/Exit';
 import Keyboard from './Keyboard';
 import { getKeyboardSetting } from '../../asyncStorage';
+import { useTranslation } from 'react-i18next';
 
 const Setting = () => {
   const [langV, setLandV] = useState<boolean>(false);
@@ -15,9 +16,11 @@ const Setting = () => {
   const [keyV, setKeyV] = useState(false);
   const [keyboard, setKeyboard] = useState('');
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     getKeyboardSetting().then(value => {
-      const text = value.isSystem ? 'سیستم' : 'Smart code';
+      const text = value.isSystem ? t('system') : 'Smart code';
       setKeyboard(text);
     });
   }, []);
@@ -27,13 +30,13 @@ const Setting = () => {
       <View style={styles.settingContainer}>
         <TouchableOpacity onPress={() => setExitV(true)} style={styles.component}>
           <View style={[RowContainer, { marginBottom: 15 }]}>
-            <Text style={[styles.title, { color: ERROR }]}>خروج</Text>
-            <Text style={styles.title}>این برنامه</Text>
+            <Text style={[styles.title, { color: ERROR }]}>{t('logout')}</Text>
+            <Text style={styles.title}>{t('thisApp')}</Text>
           </View>
           <Text style={styles.infoSub}>{`${Info.getApplicationName()} ${Info.getVersion()}`}</Text>
         </TouchableOpacity>
         <View style={[styles.component, { ...Shadow3, marginLeft: 10 }]}>
-          <Text style={[styles.title, { marginBottom: 15 }]}>این دستگاه</Text>
+          <Text style={[styles.title, { marginBottom: 15 }]}>{t('thisDevice')}</Text>
           <Text style={styles.infoSub}>{`${Info.getBrand()}, ${Platform.OS} ${Info.getSystemVersion()}`}</Text>
         </View>
       </View>
@@ -41,14 +44,14 @@ const Setting = () => {
         <TouchableOpacity style={styles.component} onPress={() => setLandV(true)}>
           <View style={[RowContainer, { marginBottom: 15 }]}>
             <Icon name="language" type="ionicon" color={BLACK} size={onNormalize(20)} />
-            <Text style={styles.title}>زبان</Text>
+            <Text style={styles.title}>{t('language')}</Text>
           </View>
           <Text style={styles.infoSub}>فارسی</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setKeyV(true)} style={[styles.component, { marginLeft: 10 }]}>
           <View style={[RowContainer, { marginBottom: 15 }]}>
             <Icon name="keypad" type="ionicon" color={BLACK} size={onNormalize(20)} />
-            <Text style={styles.title}>کیبورد</Text>
+            <Text style={styles.title}>{t('Keyboard')}</Text>
           </View>
           <Text style={styles.infoSub}>{keyboard}</Text>
         </TouchableOpacity>

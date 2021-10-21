@@ -14,7 +14,7 @@ const ServiceItem = ({ name, date, icon, onOpen }: { name: string, date: string,
         {typeof icon === 'string' ? <Avatar size="medium" source={{ uri: icon }} /> : icon}
         <View style={{ flex: 1, marginHorizontal: 20 }}>
           <Text style={styles.title}>{name}</Text>
-          <Text style={styles.sub}>{moment(date).locale('fa').format(DateTimeFormat)}</Text>
+          <Text style={styles.sub}>{moment(date).locale('fa.json').format(DateTimeFormat)}</Text>
         </View>
         <Icon name="more-vertical" type="feather" size={onNormalize(16)} />
       </TouchableOpacity>

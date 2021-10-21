@@ -1,10 +1,11 @@
 import React from 'react';
 import Component from './Component';
-import { StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const ChangePass1 = () => {
+  const { t } = useTranslation();
 
-  return <Component passName={'اول'} onConfirm={() => {}} />;
+  return <Component passNum={1} onConfirm={() => {}} />;
 };
 
 export default ChangePass1;

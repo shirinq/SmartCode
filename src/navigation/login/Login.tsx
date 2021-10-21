@@ -1,22 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { Avatar, Button, Icon } from 'react-native-elements';
-import { Props } from '../index';
+import { NavProps } from '../index';
 import { BLACK, WHITE } from '../../style/Colors';
-import { ButtonStyle, MainFont, MainFontBold, onNormalize, RowContainer } from '../../style/Styles';
+import { ButtonStyle, MainFont, MainFontBold, onNormalize } from '../../style/Styles';
 import Footer from './Footer';
 import { AUTH, LOGIN_UP } from '../../utils/Const';
+import { useTranslation } from 'react-i18next';
+import BarcodeScanner from '../../component/BarcodeScanner';
 
-const Login = ({ navigation }: Props) => {
+const Login = ({ navigation }: NavProps) => {
+  const [scanner, setScanner] = useState<boolean>(false);
+  const [id, setID] = useState<string>('');
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    if (id.length > 0) {
+      //todo: validate user and get token
+    }
+  }, [id]);
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={WHITE} />
       <Avatar source={require('../../assets/images/logoBlack.png')} size={150} containerStyle={{ marginBottom: 40 }} />
-      <Text style={styles.welcome}>خوش آمدید</Text>
-      <Text style={styles.subtitle}>برای ورود QR code ارائه شده توسط سایت را اسکن کنید.</Text>
-      <Button titleStyle={styles.btnTitle} buttonStyle={[ButtonStyle]} containerStyle={{ width: '80%', marginVertical: 50 }} title="QR Code Scanner"  onPress={()=>navigation.navigate(AUTH)}/>
+      <Text style={styles.welcome}>{t('welcome')}</Text>
+      <Text style={styles.subtitle}>{t('qrScanDes')}</Text>
+      <Button titleStyle={styles.btnTitle} buttonStyle={[ButtonStyle]} containerStyle={{ width: '80%', marginVertical: 50 }} title="QRCode Scanner"
+              onPress={() => navigation.navigate(AUTH)} />
       <Icon name="cloud" type="feather" iconStyle={{ alignSelf: 'center', marginTop: 100 }} onPress={() => navigation.navigate(LOGIN_UP)} />
       <Footer />
+      <BarcodeScanner visible={scanner} setVisible={setScanner} setScan={setID} />
     </View>
   );
 };

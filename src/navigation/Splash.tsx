@@ -3,10 +3,10 @@ import { ActivityIndicator, Image, StatusBar, StyleSheet, Text, View } from "rea
 import { BLACK, WHITE } from "../style/Colors";
 import { MainFont, MainFontBold, onNormalize } from "../style/Styles";
 import { Avatar } from "react-native-elements";
-import { Props } from "./index";
+import { NavProps } from "./index";
 import { LOGIN } from "../utils/Const";
 
-const Splash = ({ navigation }: Props) => {
+const Splash = ({ navigation }: NavProps) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.replace(LOGIN)
