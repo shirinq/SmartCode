@@ -59,7 +59,8 @@ const Code = ({ navigation }: NavProps) => {
       <Text style={styles.pinTitle}>رمز اول را وارد کنید</Text>
       <Text style={styles.errorText}>{errorText}</Text>
       {
-        isSystem ? : <SmartCodeKeyboard pin={pin} onPinChange={onPinChange} setPin={setPin} shake={shake} error={error} />
+        isSystem ? <SystemKeyboard pin={pin} onPinChange={onPinChange} setPin={setPin} shake={shake} error={error} /> :
+          <SmartCodeKeyboard pin={pin} onPinChange={onPinChange} setPin={setPin} shake={shake} error={error} />
       }
     </View>
   );
@@ -117,7 +118,13 @@ const SmartCodeKeyboard = ({
   );
 };
 
-const SystemKeyboard = ({ pin, setPin, error, onPinChange, shake }: { pin: string, setPin: (arg: string) => void, error: boolean, onPinChange: (arg: number) => void, shake: Animated.Value }) => {
+const SystemKeyboard = ({
+                          pin,
+                          setPin,
+                          error,
+                          onPinChange,
+                          shake
+                        }: { pin: string, setPin: (arg: string) => void, error: boolean, onPinChange: (arg: number) => void, shake: Animated.Value }) => {
   return (
     <View>
       <TextInput />

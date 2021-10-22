@@ -7,18 +7,21 @@ import { Icon } from 'react-native-elements';
 import Language from '../../component/dialog/Language';
 import Exit from '../../component/dialog/Exit';
 import Keyboard from './Keyboard';
-import { getKeyboardSetting } from '../../asyncStorage';
+import { getKeyboardSetting, getLocale } from '../../asyncStorage';
 import { useTranslation } from 'react-i18next';
+const langs = require('../../assets/lang/Langs.json')
 
 const Setting = () => {
   const [langV, setLandV] = useState<boolean>(false);
   const [exitV, setExitV] = useState(false);
   const [keyV, setKeyV] = useState(false);
+  const [lang, setLang] = useState('');
   const [keyboard, setKeyboard] = useState('');
 
   const { t } = useTranslation();
 
   useEffect(() => {
+    getLocale().then(value => setLang(langs.find((item:{locale:string, native:string})=>item.locale == value).native))
     getKeyboardSetting().then(value => {
       const text = value.isSystem ? t('system') : 'Smart code';
       setKeyboard(text);
@@ -46,7 +49,7 @@ const Setting = () => {
             <Icon name="language" type="ionicon" color={BLACK} size={onNormalize(20)} />
             <Text style={styles.title}>{t('language')}</Text>
           </View>
-          <Text style={styles.infoSub}>فارسی</Text>
+          <Text style={styles.infoSub}>{lang}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setKeyV(true)} style={[styles.component, { marginLeft: 10 }]}>
           <View style={[RowContainer, { marginBottom: 15 }]}>

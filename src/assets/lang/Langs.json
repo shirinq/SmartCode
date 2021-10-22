@@ -1,0 +1,4 @@
+[
+  { "locale": "fa", "id": 1, "name": "Persian", "direction": "rtl", "native": "فارسی" },
+  { "locale": "en", "id": 2, "name": "English", "direction": "ltr", "native": "English" }
+]

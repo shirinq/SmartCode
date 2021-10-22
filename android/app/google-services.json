@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1083770325827",
+    "project_id": "adaarosmartcode",
+    "storage_bucket": "adaarosmartcode.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083770325827:android:9c2abbfa976bdc76ef7df6",
+        "android_client_info": {
+          "package_name": "com.anamakacloud.smartcode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083770325827-hbbc8kce3ln1mp7i99l97g194qftuvvj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA0hD4NkEfvRXWHmrGYmXCL8LSsFC6KTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083770325827-hbbc8kce3ln1mp7i99l97g194qftuvvj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

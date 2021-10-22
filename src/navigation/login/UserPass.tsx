@@ -8,25 +8,34 @@ import { NavProps } from '../index';
 import TextInput from '../../component/TextInput';
 import { AUTH } from '../../utils/Const';
 import { StackActions } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { AppSettingModel } from '../../model/StoreModels';
 
 const UserPass = ({ navigation }: NavProps) => {
+  const { alignment } = useSelector(({ appSetting }: { appSetting: AppSettingModel }) => appSetting);
+  const { t } = useTranslation();
+
+  const onLogin = () => {
+    navigation.popToTop();
+    navigation.dispatch(StackActions.replace(AUTH));
+    //todo:get user token
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={WHITE} />
       <Avatar source={require('../../assets/images/logoBlack.png')} size={100} containerStyle={{ marginBottom: 15 }} />
-      <Text style={styles.title}>ورود</Text>
-      <Text style={styles.subtitle}>نام کاربری و رمز عبور خود را وارد کنید.</Text>
+      <Text style={[styles.title, { alignSelf: alignment }]}>{t('login')}</Text>
+      <Text style={[styles.subtitle, { alignSelf: alignment }]}>{t('userPassTitle')}</Text>
       <View style={{ marginTop: 50, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center' }}>
-        <TextInput placeholder="نام کاربری" blurOnSubmit leftIcon={<Icon name="user" type="feather" size={onNormalize(20)} color={MEDIUM} />} />
-        <TextInput placeholder="رمز عبور" blurOnSubmit leftIcon={<Icon name="lock" type="feather" size={onNormalize(20)} color={MEDIUM} />} />
+        <TextInput placeholder={t('username')} blurOnSubmit leftIcon={<Icon name="user" type="feather" size={onNormalize(20)} color={MEDIUM} />} />
+        <TextInput placeholder={t('password')} blurOnSubmit leftIcon={<Icon name="lock" type="feather" size={onNormalize(20)} color={MEDIUM} />} />
       </View>
-      <Button title="ورود" type="solid" buttonStyle={ButtonStyle} onPress={() => {
-        navigation.popToTop();
-        navigation.dispatch(StackActions.replace(AUTH));
-      }}
+      <Button title={t('login')} type="solid" buttonStyle={ButtonStyle} onPress={onLogin}
               containerStyle={{ width: '100%', marginVertical: 30 }} titleStyle={styles.btnTitle} />
-      <Button title="رمز عبور خود را فراموش کرده اید؟" type="clear" containerStyle={{ width: '100%' }} titleStyle={[styles.btnTitle, { fontSize: onNormalize(12), color: BLACK }]} />
-      <Button title="عضو سایت نیستید؟ ثبت نام" type="clear" containerStyle={{ width: '100%' }} titleStyle={[styles.btnTitle, { fontSize: onNormalize(12), color: BLACK }]} />
+      <Button title={t('forgetPass')} type="clear" containerStyle={{ width: '100%' }} titleStyle={[styles.btnTitle, { fontSize: onNormalize(12), color: BLACK }]} />
+      <Button title={t('registerTitle')} type="clear" containerStyle={{ width: '100%' }} titleStyle={[styles.btnTitle, { fontSize: onNormalize(12), color: BLACK }]} />
       <Footer />
     </View>
   );

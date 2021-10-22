@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { MainFont, onNormalize } from '../../style/Styles';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import { StyleSheet, View } from 'react-native';
 import Language from '../../component/dialog/Language';
+import { useTranslation } from 'react-i18next';
+import { BLACK } from '../../style/Colors';
 
 const Footer = () => {
   const [visible, setVisible] = useState<boolean>(false);
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
-      <Button type="clear" titleStyle={styles.footerText} title="Lang" onPress={() => setVisible(true)} />
-      <Button type="clear" titleStyle={styles.footerText} title="Terms" />
-      <Button type="clear" titleStyle={styles.footerText} title="Privacy" />
-      <Button type="clear" titleStyle={styles.footerText} title="About us" />
-      <Button type="clear" titleStyle={styles.footerText} title="Support" />
+      <Button type="clear" titleStyle={styles.footerText} icon={<Icon name="language" type="ionicon" color='#6d6d6d' size={onNormalize(20)} />} onPress={() => setVisible(true)} />
+      <Button type="clear" titleStyle={styles.footerText} title={t('terms')} />
+      <Button type="clear" titleStyle={styles.footerText} title={t('privacy')} />
+      <Button type="clear" titleStyle={styles.footerText} title={t('support')} />
       <Language visible={visible} setVisible={setVisible} />
     </View>
   );

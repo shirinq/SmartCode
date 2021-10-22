@@ -6,31 +6,38 @@ import { Container, MainFont, onNormalize } from '../../style/Styles';
 import { BLACK, MEDIUM } from '../../style/Colors';
 import { getLocale, setLocale } from '../../asyncStorage';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { AppSettingActions } from '../../redux/slice/AppSetting';
+import { _Direction } from '../../model/StoreModels';
 
 const Language = ({ visible, setVisible }: { visible: boolean, setVisible: (arg: boolean) => void }) => {
   const [locale, setCLocale] = useState('');
   const { i18n } = useTranslation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getLocale().then(value => setCLocale(value));
   }, []);
 
-  const cultureHandler = (locale: string) => {
+  const cultureHandler = (locale: string, direction: _Direction) => {
     setVisible(false);
     setCLocale(locale);
     setLocale(locale);
     i18n.changeLanguage(locale).then(value => {
       setVisible(false);
+      dispatch(AppSettingActions.setDirection(direction));
+      dispatch(AppSettingActions.setLanguage(locale));
     });
   };
 
   return (
     <BaseDialog visible={visible} setVisible={setVisible} width="90%" height="auto" enableBackdrop>
       <FlatList
-        data={[{ locale: 'fa', id: 1, name: 'Persian', native: 'فارسی' }, { locale: 'en', id: 2, name: 'English', native: 'English' }]}
+        data={[{ locale: 'fa', id: 1, name: 'Persian', direction: 'rtl' as _Direction, native: 'فارسی' },
+          { locale: 'en', id: 2, name: 'English', direction: 'ltr' as _Direction, native: 'English' }]}
         style={{ alignSelf: 'stretch' }}
         keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => <Item name={item.name} native={item.native} checked={item.locale == locale} locale={item.locale} setCulture={cultureHandler} />}
+        renderItem={({ item }) => <Item name={item.name} native={item.native} direction={item.direction} checked={item.locale == locale} locale={item.locale} setCulture={cultureHandler} />}
       />
     </BaseDialog>
   );
@@ -38,10 +45,19 @@ const Language = ({ visible, setVisible }: { visible: boolean, setVisible: (arg:
 
 export default Language;
 
-const Item = ({ name, native, locale, checked, setCulture }: { name: string, native: string, locale: string, checked: boolean, setCulture: (arg: string) => void }) => {
+interface ItemProps {
+  name: string,
+  native: string,
+  locale: string,
+  checked: boolean,
+  direction: _Direction,
+  setCulture: (arg: string, dir: _Direction) => void
+}
+
+const Item = ({ name, native, locale, direction, checked, setCulture }: ItemProps) => {
   return (
     <View style={{ flex: 1, paddingHorizontal: 5 }}>
-      <TouchableOpacity style={styles.viewHolderContainer} onPress={() => setCulture(locale)}>
+      <TouchableOpacity style={styles.viewHolderContainer} onPress={() => setCulture(locale, direction)}>
         <View style={{ alignItems: 'flex-start' }}>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.locale}>{native}</Text>

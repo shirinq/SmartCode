@@ -7,10 +7,12 @@ import { Button } from 'react-native-elements';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { LOGIN } from '../../utils/Const';
 import TextInput from '../TextInput';
+import { useTranslation } from 'react-i18next';
 
 const Exit = ({ visible, setVisible }: { visible: boolean, setVisible: (arg: boolean) => void }) => {
   const navigation = useNavigation();
   const [text, setText] = useState<string>();
+  const { t } = useTranslation();
 
   const onExit = () => {
     setVisible(false);
@@ -20,16 +22,17 @@ const Exit = ({ visible, setVisible }: { visible: boolean, setVisible: (arg: boo
 
   return (
     <BaseDialog visible={visible} setVisible={setVisible} width="90%">
-      <Text style={styles.title}>خروج از حساب کاربری</Text>
-      <Text style={styles.text}>با خروج از حساب کاربری اطلاعات شما از دستگاه پاک می شود</Text>
-      <Text style={styles.text}>برای تایید خروج کلمه <Text style={{ fontFamily: MainFontBold, color: ERROR }}>DELETE</Text> را در کادر زیر وارد کنید و سپس دکمه تایید را بفشارید</Text>
+      <Text style={styles.title}>{t('logoutTitle')}</Text>
+      <Text style={styles.text}>{t('logoutDesc')}</Text>
+      <Text style={styles.text}>{t('logoutText')} <Text style={{ fontFamily: MainFontBold, color: ERROR }}>DELETE</Text> {t('logoutText2')}</Text>
 
       <TextInput value={text} onChangeText={setText} containerStyle={{ marginTop: 35 }} />
       <View style={[RowContainer, { marginTop: 35 }]}>
-        <Button title="لغو" type="outline" disabled={text !== 'DELETE'} buttonStyle={[ButtonOutStyle, { height: onNormalize(40) }]} onPress={() => setVisible(false)}
+        <Button title={t('cancel')} type="outline" buttonStyle={[ButtonOutStyle, { height: onNormalize(40) }]} onPress={() => setVisible(false)}
                 containerStyle={{ flex: 1 }}
                 titleStyle={[styles.btnTitle, { color: BLACK }]} />
-        <Button title="خروج" type="solid" buttonStyle={[ButtonStyle, { height: onNormalize(40) }]} onPress={onExit} containerStyle={{ flex: 1, marginStart: 15 }}
+        <Button title={t('logout')} type="solid" disabled={text !== 'DELETE'} buttonStyle={[ButtonStyle, { height: onNormalize(40) }]} onPress={onExit}
+                containerStyle={{ flex: 1, marginStart: 15 }}
                 titleStyle={styles.btnTitle} />
       </View>
     </BaseDialog>

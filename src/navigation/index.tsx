@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AUTH, CODE, HOME, LOGIN, LOGIN_UP, SPLASH } from '../utils/Const';
 import Login from './login/Login';
@@ -9,6 +9,12 @@ import Authentication from './authentication';
 import Home from './home';
 import Code from './Code';
 import { NativeStackScreenProps } from 'react-native-screens/native-stack';
+import { getLocale } from '../asyncStorage';
+import { useDispatch } from 'react-redux';
+import { AppSettingActions } from '../redux/slice/AppSetting';
+import { _Direction } from '../model/StoreModels';
+
+const Langs = require('../assets/lang/Langs.json');
 
 export type RootStackParamList = {
   Splash: undefined,
@@ -24,6 +30,15 @@ const Stack = createStackNavigator<RootStackParamList>();
 export type NavProps = NativeStackScreenProps<RootStackParamList, typeof SPLASH | typeof LOGIN | typeof LOGIN_UP | typeof AUTH | typeof CODE | typeof HOME>
 
 const Navigation = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getLocale().then(value => {
+      dispatch(AppSettingActions.setLanguage(value));
+      dispatch(AppSettingActions.setDirection(Langs.map((item: { name: string, locale: string, direction: _Direction }) => item.locale == value).direction));
+    });
+  }, []);
+
   return (
     <Stack.Navigator initialRouteName={SPLASH}>
       <Stack.Screen name={SPLASH} component={Splash} options={{ headerShown: false }} />

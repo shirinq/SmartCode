@@ -3,7 +3,7 @@
   "second": "Second",
   "delete": "Delete",
   "disabled": "Disabled",
-  "changePass": "Change first password",
+  "changePass1": "Change first password",
   "changePass2": "Change second password",
   "currentPass": "Current password",
   "password": "Password",
@@ -37,5 +37,17 @@
   "random": "Random",
   "cancel": "Cancel",
   "save": "Save",
-  "tryAgain": "Try again"
+  "tryAgain": "Try again",
+  "login": "Login",
+  "userPassTitle": "Enter your username and password.",
+  "username": "Username",
+  "password2": "Password",
+  "registerTitle": "Don't have account? Register",
+  "logoutTitle": "Logout from your account",
+  "logoutDesc": "Your information will be deleted from this device",
+  "logoutText": "For logout type the world",
+  "logoutText2": "and press Logout button.",
+  "terms": "Terms",
+  "privacy": "Privacy Policy",
+  "support": "Support"
 }

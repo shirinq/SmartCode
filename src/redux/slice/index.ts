@@ -1,4 +1,7 @@
-import { combineReducers } from "@reduxjs/toolkit";
+import { combineReducers } from '@reduxjs/toolkit';
+import appSetting from './AppSetting';
 
-const combinedReducers = combineReducers({});
+const combinedReducers = combineReducers({
+  appSetting
+});
 export default combinedReducers;

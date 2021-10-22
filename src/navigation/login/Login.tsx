@@ -8,8 +8,11 @@ import Footer from './Footer';
 import { AUTH, LOGIN_UP } from '../../utils/Const';
 import { useTranslation } from 'react-i18next';
 import BarcodeScanner from '../../component/BarcodeScanner';
+import { useSelector } from 'react-redux';
+import { AppSettingModel } from '../../model/StoreModels';
 
 const Login = ({ navigation }: NavProps) => {
+  const { alignment } = useSelector(({ appSetting }: { appSetting: AppSettingModel }) => appSetting);
   const [scanner, setScanner] = useState<boolean>(false);
   const [id, setID] = useState<string>('');
   const { t } = useTranslation();
@@ -24,11 +27,11 @@ const Login = ({ navigation }: NavProps) => {
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={WHITE} />
       <Avatar source={require('../../assets/images/logoBlack.png')} size={150} containerStyle={{ marginBottom: 40 }} />
-      <Text style={styles.welcome}>{t('welcome')}</Text>
-      <Text style={styles.subtitle}>{t('qrScanDes')}</Text>
+      <Text style={[styles.welcome, { alignSelf: alignment }]}>{t('welcome')}</Text>
+      <Text style={[styles.subtitle, { alignSelf: alignment }]}>{t('qrScanDes')}</Text>
       <Button titleStyle={styles.btnTitle} buttonStyle={[ButtonStyle]} containerStyle={{ width: '80%', marginVertical: 50 }} title="QRCode Scanner"
-              onPress={() => navigation.navigate(AUTH)} />
-      <Icon name="cloud" type="feather" iconStyle={{ alignSelf: 'center', marginTop: 100 }} onPress={() => navigation.navigate(LOGIN_UP)} />
+              onPress={() => setScanner(true)} />
+      <Icon name="cloud" type="feather" iconStyle={{ alignSelf: 'center'}} containerStyle={{marginTop: onNormalize(100) }} onPress={() => navigation.navigate(LOGIN_UP)} />
       <Footer />
       <BarcodeScanner visible={scanner} setVisible={setScanner} setScan={setID} />
     </View>
