@@ -63,8 +63,8 @@ export const ButtonOutStyle: ViewStyle | TextStyle | ImageStyle = {
   width: 'auto',
   height: onNormalize(48),
   borderRadius: 25,
-  borderWidth:2,
-  borderColor:BLACK,
+  borderWidth: 2,
+  borderColor: BLACK,
   alignItems: 'center',
   justifyContent: 'center',
   alignContent: 'center'
@@ -117,3 +117,9 @@ export const Shadow7 = {
   elevation: 7
 };
 
+export const _Disabled: ViewStyle = {
+  backgroundColor: '#dddddd',
+  opacity:0.9,
+  shadowColor: "transparent",
+  elevation: 0,
+};

@@ -6,11 +6,12 @@ import { Icon } from 'react-native-elements';
 import { MainFont, MainFontBold, onHeaderBasicStyle, onNormalize } from '../../style/Styles';
 import { BLACK, MEDIUM } from '../../style/Colors';
 import { MAIN, NOTIF_ARCHIVE, PASS1, PASS2, SERVICES, SETTING } from '../../utils/Const';
-import ChangePass1 from '../authentication/ChangePass1';
-import ChangePass2 from '../authentication/ChangePass2';
+import ChangePass1 from '../authentication/change/ChangePass1';
+import ChangePass2 from '../authentication/change/ChangePass2';
 import Setting from '../setting';
 import Service from '../service';
 import { useTranslation } from 'react-i18next';
+import Notification from '../notification';
 
 type DrawerList = {
   Main: undefined,
@@ -21,7 +22,6 @@ type DrawerList = {
   NotificationArchive: undefined
 }
 const Drawer = createDrawerNavigator<DrawerList>();
-
 
 const Home = () => {
   const { t } = useTranslation();
@@ -66,7 +66,7 @@ const Home = () => {
       />
       <Drawer.Screen
         name={NOTIF_ARCHIVE}
-        component={() => null}
+        component={Notification}
         options={{ title: t('notificationMenu'), drawerLabel: t('notificationMenu'), drawerLabelStyle: styles.label, drawerIcon: () => <Icon name="bell" type="feather" /> }}
       />
       <Drawer.Screen
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   label: {
     fontFamily: MainFont,
     color: BLACK,
-    fontSize: onNormalize(16)
+    fontSize: onNormalize(13.7)
   },
   headerTitle: {
     fontFamily: MainFontBold,

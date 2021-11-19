@@ -10,6 +10,9 @@ import { useTranslation } from 'react-i18next';
 import BarcodeScanner from '../../component/BarcodeScanner';
 import { useSelector } from 'react-redux';
 import { AppSettingModel } from '../../model/StoreModels';
+import { onRegister } from '../../services/Requests';
+import { setToken } from '../../asyncStorage';
+import { StackActions } from '@react-navigation/native';
 
 const Login = ({ navigation }: NavProps) => {
   const { alignment } = useSelector(({ appSetting }: { appSetting: AppSettingModel }) => appSetting);
@@ -19,7 +22,13 @@ const Login = ({ navigation }: NavProps) => {
 
   useEffect(() => {
     if (id.length > 0) {
-      //todo: validate user and get token
+      onRegister( {imeI1:'string', imeI2:'string', phone:'phone', pni:'1234', serialNumber:'string'}).then(data=>{
+        if (data) {
+          setToken(data)
+          navigation.popToTop();
+          navigation.dispatch(StackActions.replace(AUTH));
+        }
+      })
     }
   }, [id]);
 

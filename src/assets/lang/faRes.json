@@ -13,13 +13,14 @@
   "forgetPass": "رمز عبور خود را فراموش کرده اید؟",
   "step": "مرحله",
   "continue": "ادامه",
+  "later": "بعدا",
   "descriptionP1": "",
   "descriptionP2": "",
   "hi": "سلام ",
   "pass1ChangeTime": "زمان آخرین تغییر رمز اول",
   "pass2ChangeTime": "زمان آخرین تغییر رمز دوم",
   "homeMenu": "صفحه اصلی",
-  "serviceMenu": "سرویس های فعال",
+  "serviceMenu": "سرویس ها",
   "notificationMenu": "اعلان ها",
   "settingMenu": "تنظیمات",
   "welcome": "خوش آمدید",
@@ -47,7 +48,8 @@
   "logoutDesc": "با خروج از حساب کاربری اطلاعات شما از دستگاه پاک می شود",
   "logoutText": "برای تایید خروج کلمه",
   "logoutText2": "را در کادر زیر وارد کنید و سپس دکمه خروج را بفشارید",
-  "terms": "شرایط",
-  "privacy": "قوانین",
-  "support": "پشتیبانی"
+  "terms": "شرایط و ضوابط",
+  "privacy": "حریم خصوصی",
+  "support": "پشتیبانی",
+  "noContent": "هیچ نتیجه ای یافت نشد"
 }

@@ -1,4 +1,4 @@
-package com.anamakacloud;
+package com.anamakacloud.smartcode;
 
 import android.app.Application;
 import android.content.Context;

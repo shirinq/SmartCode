@@ -5,7 +5,7 @@ import Login from './login/Login';
 import Splash from './Splash';
 import { onHeaderBasicStyle } from '../style/Styles';
 import UserPass from './login/UserPass';
-import Authentication from './authentication';
+import Authentication from './authentication/init';
 import Home from './home';
 import Code from './Code';
 import { NativeStackScreenProps } from 'react-native-screens/native-stack';
@@ -35,7 +35,7 @@ const Navigation = () => {
   useEffect(() => {
     getLocale().then(value => {
       dispatch(AppSettingActions.setLanguage(value));
-      dispatch(AppSettingActions.setDirection(Langs.map((item: { name: string, locale: string, direction: _Direction }) => item.locale == value).direction));
+      dispatch(AppSettingActions.setDirection(Langs.find((item: { name: string, locale: string, direction: _Direction }) => item.locale == value).direction));
     });
   }, []);
 

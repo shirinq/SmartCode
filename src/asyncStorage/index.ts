@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { KEYBOARD_SETTING, LOCALE } from '../utils/Const';
+import { KEYBOARD_SETTING, LOCALE, TOKEN } from '../utils/Const';
 
 /**
  * <culture>
@@ -21,6 +21,7 @@ export const setLocale = async (locale: string) => {
   } catch (e) {
   }
 };
+
 /**
  * <keyboard setting>
  */
@@ -37,6 +38,27 @@ export const setKeyboardSetting = async (setting: { isRandom: boolean, isSystem:
   try {
     const jsonValue = JSON.stringify(setting);
     await AsyncStorage.setItem(KEYBOARD_SETTING, jsonValue);
+  } catch (e) {
+  }
+};
+
+/**
+ * <user token>
+ */
+export const getToken = async (): Promise<string> => {
+  try {
+    const data = await AsyncStorage.getItem(TOKEN);
+    if (data !== null)
+      return data;
+    return '';
+  } catch (e) {
+    return '';
+  }
+};
+
+export const setToken = async (token: string) => {
+  try {
+    await AsyncStorage.setItem(LOCALE, token);
   } catch (e) {
   }
 };

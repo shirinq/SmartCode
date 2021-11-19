@@ -8,6 +8,7 @@ import { StackActions, useNavigation } from '@react-navigation/native';
 import { LOGIN } from '../../utils/Const';
 import TextInput from '../TextInput';
 import { useTranslation } from 'react-i18next';
+import { setToken } from '../../asyncStorage';
 
 const Exit = ({ visible, setVisible }: { visible: boolean, setVisible: (arg: boolean) => void }) => {
   const navigation = useNavigation();
@@ -16,6 +17,7 @@ const Exit = ({ visible, setVisible }: { visible: boolean, setVisible: (arg: boo
 
   const onExit = () => {
     setVisible(false);
+    setToken('');
     navigation.dispatch(StackActions.popToTop);
     navigation.dispatch(StackActions.replace(LOGIN));
   };

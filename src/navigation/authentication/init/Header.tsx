@@ -1,7 +1,7 @@
 import React, { PropsWithRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { BLACK, WHITE } from '../../style/Colors';
-import { MainFont, MainFontBold, onNormalize, Shadow1 } from '../../style/Styles';
+import { BLACK, WHITE } from '../../../style/Colors';
+import { MainFont, MainFontBold, onNormalize, Shadow1 } from '../../../style/Styles';
 import { Icon, LinearProgress } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 

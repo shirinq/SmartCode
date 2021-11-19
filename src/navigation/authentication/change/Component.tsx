@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { ButtonStyle, Container, MainFont, MainFontBold, onNormalize } from '../../style/Styles';
-import { BLACK } from '../../style/Colors';
-import TextInput from '../../component/TextInput';
+import { ButtonStyle, Container, MainFont, MainFontBold, onNormalize } from '../../../style/Styles';
+import { BLACK } from '../../../style/Colors';
+import TextInput from '../../../component/TextInput';
 import { Button } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 
@@ -31,7 +31,6 @@ export default PassComponent;
 const styles = StyleSheet.create({
   title: {
     marginVertical: 20,
-    alignSelf: 'flex-end',
     color: BLACK,
     fontSize: 20,
     fontFamily: MainFontBold

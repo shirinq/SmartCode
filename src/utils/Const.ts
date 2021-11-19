@@ -15,4 +15,5 @@ export const DateTimeFormat = 'YYYY/MM/DD - HH:mm';
 export const DateFormat = 'YYYY/MM/DD';
 export const LOCALE = 'locale';
 export const KEYBOARD_SETTING = 'keyboardSetting';
+export const TOKEN = 'userToken';
 export const NAMESPACE = 'ns1';

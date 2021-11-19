@@ -27,6 +27,7 @@
   "close": "Close",
   "default": "Default",
   "system": "System",
+  "later": "Later",
   "thisApp": "This app",
   "thisDevice": "This device",
   "logout": "Logout",
@@ -49,5 +50,6 @@
   "logoutText2": "and press Logout button.",
   "terms": "Terms",
   "privacy": "Privacy Policy",
-  "support": "Support"
+  "support": "Support",
+  "noContent": "No content"
 }

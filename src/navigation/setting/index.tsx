@@ -21,12 +21,16 @@ const Setting = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    getLocale().then(value => setLang(langs.find((item:{locale:string, native:string})=>item.locale == value).native))
     getKeyboardSetting().then(value => {
       const text = value.isSystem ? t('system') : 'Smart code';
       setKeyboard(text);
     });
   }, []);
+
+  useEffect(()=>{
+    if (!langV)
+      getLocale().then(value => setLang(langs.find((item:{locale:string, native:string})=>item.locale == value).native))
+  },[langV])
 
   return (
     <View style={Container}>

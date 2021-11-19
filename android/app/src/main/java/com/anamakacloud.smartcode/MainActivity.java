@@ -1,4 +1,4 @@
-package com.anamakacloud;
+package com.anamakacloud.smartcode;
 
 import com.facebook.react.ReactActivity;
 
