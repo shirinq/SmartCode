@@ -31,7 +31,7 @@ const Authentication = ({ navigation }: NavProps) => {
       {step == 1 ? <Component password={pass1} setPassword={setPass1} confPassword={confPass1} setConfPassword={setConfPass1} title={t('first')} description={t('descriptionP1')}
                               onNext={() => setStep(2)} nextDisable={pass1.length < 4 || pass1 != confPass1} nextTitle={t('continue')} /> :
         <Component password={pass2} setPassword={setPass2} confPassword={confPass2} setConfPassword={setConfPass2} title={t('second')} description={t('descriptionP2')}
-                   onNext={onNext} nextDisable={false} nextTitle={pass2.length < 4 && pass2 == confPass2 ? t('continue') : t('later')} />
+                   onNext={onNext} nextDisable={false} nextTitle={pass2.length == 4 && pass2 == confPass2 ? t('continue') : t('later')} />
       }
     </View>
   );

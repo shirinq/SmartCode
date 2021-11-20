@@ -24,10 +24,8 @@ export default Footer;
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
     alignSelf: 'center',
     width: '100%',
-    bottom: onNormalize(30),
     flexDirection: 'row',
     justifyContent: 'space-evenly'
   },

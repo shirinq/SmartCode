@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
-import { BLACK, MEDIUM, WHITE } from '../../style/Colors';
-import { Avatar, Button, Icon } from 'react-native-elements';
-import { ButtonStyle, MainFont, MainFontBold, onNormalize } from '../../style/Styles';
+import { BLACK, ERROR, MEDIUM, WHITE } from '../../style/Colors';
+import { Avatar, Button, Icon, Image } from 'react-native-elements';
+import { ButtonStyle, Container, MainFont, MainFontBold, onNormalize } from '../../style/Styles';
 import Footer from './Footer';
 import { NavProps } from '../index';
 import TextInput from '../../component/TextInput';
@@ -25,19 +25,19 @@ const UserPass = ({ navigation }: NavProps) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={Container}>
       <StatusBar barStyle="dark-content" backgroundColor={WHITE} />
-      <Avatar source={require('../../assets/images/logoBlack.png')} size={100} containerStyle={{ marginBottom: 15 }} />
-      <Text style={[styles.title, { alignSelf: alignment }]}>{t('login')}</Text>
-      <Text style={[styles.subtitle, { alignSelf: alignment }]}>{t('userPassTitle')}</Text>
-      <View style={{ marginTop: 50, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center' }}>
+      <Avatar source={require('../../assets/images/logoBlack.png')} size={onNormalize(90)} containerStyle={{ alignSelf:'center' }} />
+      <Text style={[styles.title]}>{t('login')}</Text>
+      <Text style={[styles.subtitle]}>{t('userPassTitle')}</Text>
+      <View style={{ marginTop: onNormalize(25)}}>
         <TextInput value={username} onChangeText={setUsername} placeholder={t('username')} blurOnSubmit
                    leftIcon={<Icon name="user" type="feather" size={onNormalize(20)} color={MEDIUM} />} />
         <TextInput value={password} onChangeText={setPassword} secureTextEntry placeholder={t('password')} blurOnSubmit
                    leftIcon={<Icon name="lock" type="feather" size={onNormalize(20)} color={MEDIUM} />} />
       </View>
       <Button title={t('login')} type="solid" buttonStyle={ButtonStyle} disabled={password.length == 0 || username.length == 0} onPress={onLogin}
-              containerStyle={{ width: '100%', marginVertical: 30 }} titleStyle={styles.btnTitle} />
+              containerStyle={{ width: '100%', marginVertical: onNormalize(30) }} titleStyle={styles.btnTitle} />
       <Button title={t('forgetPass')} type="clear" containerStyle={{ width: '100%' }} titleStyle={[styles.btnTitle, { fontSize: onNormalize(12), color: BLACK }]} />
       <Button title={t('registerTitle')} type="clear" containerStyle={{ width: '100%' }} titleStyle={[styles.btnTitle, { fontSize: onNormalize(12), color: BLACK }]} />
     </View>
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 20,
-    alignSelf: 'flex-end',
     color: BLACK,
     fontSize: 20,
     fontFamily: MainFontBold
@@ -64,7 +63,6 @@ const styles = StyleSheet.create({
     fontSize: onNormalize(14)
   },
   subtitle: {
-    alignSelf: 'flex-end',
     fontFamily: MainFont,
     fontSize: onNormalize(14),
     color: '#4b4b4b',
