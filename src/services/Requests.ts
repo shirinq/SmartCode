@@ -3,22 +3,27 @@ import { _URL } from './APIs';
 import axios from 'axios';
 import { UserModel } from '../model/RequestModel';
 
-export function onAuthentication(pin: string, code: string, application: string, user: string) {
-  return (axios.post(`${_URL}${Urls.AUTHENTICATION}/${code}/${application}/${user}`, null, {
-    headers: pin
+export function onAuthentication(pin: string, token: string, user: string) {
+  return (axios.post(`${_URL}${Urls.AUTHENTICATION}${user}`, null, {
+    headers: {
+      pin,
+      Authorize: token
+    }
   }).then(response => response.data));
 }
 
-export function onSubscribe(registrationCode: string, userModel: UserModel) {
-  return (axios.post(`${_URL}${Urls.CLIENTS_SUBSCRIBE}/${registrationCode}`, userModel).then(response => response.data));
+export function onSubscribe(registrationCode: string, token: string) {
+  return (axios.post(`${_URL}${Urls.CLIENTS_SUBSCRIBE}${registrationCode}`, null, {
+    headers: { Authorize: token }
+  }).then(response => response.data));
 }
 
 export function onRegister(userModel: UserModel) {
   return (axios.post(`${_URL}${Urls.CLIENTS_REGISTER}`, userModel).then(response => response.data));
 }
 
-export function onConfirm(confirmationCode:string, Authorize:string, userModel:UserModel) {
-  return (axios.put(`${_URL}${Urls.CLIENTS_CONFIRM}/${confirmationCode}`, userModel, {
-    headers: Authorize
+export function onConfirm(confirmationCode: string, token: string) {
+  return (axios.put(`${_URL}${Urls.CLIENTS_CONFIRM}${confirmationCode}`, null, {
+    headers: { Authorize: token }
   }).then(response => response.data));
 }

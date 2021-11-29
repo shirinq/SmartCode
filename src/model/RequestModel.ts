@@ -3,5 +3,7 @@ export interface UserModel {
   imeI2: string,
   serialNumber: string,
   phone: string,
-  pni: string
+  pni: string,
+  piN1: string,
+  piN2: string
 }

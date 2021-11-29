@@ -4,10 +4,13 @@ import { WHITE } from '../../../style/Colors';
 import { Container } from '../../../style/Styles';
 import Header from './Header';
 import { NavProps } from '../../index';
-import { HOME } from '../../../utils/Const';
+import { CODE, HOME } from '../../../utils/Const';
 import { StackActions } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import Component from './Component';
+import { onRegister } from '../../../services/Requests';
+import { getDeviceNameSync, getUniqueId } from 'react-native-device-info';
+import { setToken } from '../../../asyncStorage';
 
 
 const Authentication = ({ navigation }: NavProps) => {
@@ -19,9 +22,22 @@ const Authentication = ({ navigation }: NavProps) => {
   const [confPass2, setConfPass2] = useState<string>('');
 
   const onNext = () => {
-    if (navigation.canGoBack())
-      navigation.popToTop();
-    navigation.dispatch(StackActions.replace(HOME));
+    onRegister({
+      imeI1: getUniqueId(), imeI2: getUniqueId(), phone: getDeviceNameSync(),
+      pni: '1234', serialNumber: 'string', piN1: pass1, piN2: pass2
+    }).then(data => {
+      if (data) {
+        setToken(data);
+        if (navigation.canGoBack())
+          navigation.popToTop();
+        navigation.dispatch(StackActions.replace(CODE));
+        //navigation.dispatch(StackActions.replace(HOME));
+      } else {
+        console.log('error');
+      }
+    }).catch(e => {
+      console.log(e.toString());
+    });
   };
 
   return (

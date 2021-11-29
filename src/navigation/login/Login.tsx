@@ -13,6 +13,7 @@ import { AppSettingModel } from '../../model/StoreModels';
 import { onRegister } from '../../services/Requests';
 import { setToken } from '../../asyncStorage';
 import { StackActions } from '@react-navigation/native';
+import { getUniqueId } from 'react-native-device-info';
 
 const Login = ({ navigation }: NavProps) => {
   const { alignment } = useSelector(({ appSetting }: { appSetting: AppSettingModel }) => appSetting);
@@ -20,14 +21,9 @@ const Login = ({ navigation }: NavProps) => {
   const { t } = useTranslation();
 
   const setID = (id: string) => {
-    if (id.length > 0) {
-      onRegister({ imeI1: 'string', imeI2: 'string', phone: 'phone', pni: '1234', serialNumber: 'string' }).then(data => {
-        if (data) {
-          setToken(data);
-          navigation.popToTop();
-          navigation.dispatch(StackActions.replace(AUTH));
-        }
-      });
+    if (new RegExp(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i).test(id)) {
+      navigation.popToTop();
+      navigation.dispatch(StackActions.replace(AUTH));
     }
   };
 
