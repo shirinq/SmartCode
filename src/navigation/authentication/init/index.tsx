@@ -4,13 +4,15 @@ import { WHITE } from '../../../style/Colors';
 import { Container } from '../../../style/Styles';
 import Header from './Header';
 import { NavProps } from '../../index';
-import { CODE, HOME } from '../../../utils/Const';
-import { StackActions } from '@react-navigation/native';
+import { CODE } from '../../../utils/Const';
 import { useTranslation } from 'react-i18next';
 import Component from './Component';
 import { onRegister } from '../../../services/Requests';
 import { getDeviceNameSync, getUniqueId } from 'react-native-device-info';
 import { setToken } from '../../../asyncStorage';
+import { useDispatch } from 'react-redux';
+import { AppSettingActions } from '../../../redux/slice/AppSetting';
+import { onErrorMessage } from '../../../utils';
 
 
 const Authentication = ({ navigation }: NavProps) => {
@@ -21,22 +23,24 @@ const Authentication = ({ navigation }: NavProps) => {
   const [pass2, setPass2] = useState<string>('');
   const [confPass2, setConfPass2] = useState<string>('');
 
+  const dispatch = useDispatch();
+
   const onNext = () => {
     onRegister({
-      imeI1: getUniqueId(), imeI2: getUniqueId(), phone: getDeviceNameSync(),
+      imeI1: getUniqueId(), imeI2: getUniqueId(), phone: 'HUAWEI G7-L01',
       pni: '1234', serialNumber: 'string', piN1: pass1, piN2: pass2
     }).then(data => {
       if (data) {
-        setToken(data);
+        dispatch(AppSettingActions.setToken(data));
         if (navigation.canGoBack())
           navigation.popToTop();
-        navigation.dispatch(StackActions.replace(CODE));
+        navigation.replace(CODE, { title: 'ثبت نام', code: 111111, pinTitle: 'کد را وارد کنید', isRegister: true });
         //navigation.dispatch(StackActions.replace(HOME));
       } else {
-        console.log('error');
+        onErrorMessage('Some thing went wrong!')
       }
     }).catch(e => {
-      console.log(e.toString());
+      onErrorMessage(e.toString())
     });
   };
 

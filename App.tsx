@@ -8,6 +8,7 @@ import { ActivityIndicator, I18nManager } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import i18n from './i18n';
 import store from './src/redux';
+import FlashMessage from 'react-native-flash-message';
 
 
 async function registerAppWithFCM() {
@@ -38,6 +39,7 @@ const App = () => {
           </NavigationContainer>
         </Provider>
       </I18nextProvider>
+      <FlashMessage position="bottom" />
     </Suspense>
   );
 };

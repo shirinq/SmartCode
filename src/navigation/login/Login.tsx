@@ -14,6 +14,7 @@ import { onRegister } from '../../services/Requests';
 import { setToken } from '../../asyncStorage';
 import { StackActions } from '@react-navigation/native';
 import { getUniqueId } from 'react-native-device-info';
+import { onErrorMessage } from '../../utils';
 
 const Login = ({ navigation }: NavProps) => {
   const { alignment } = useSelector(({ appSetting }: { appSetting: AppSettingModel }) => appSetting);
@@ -21,9 +22,11 @@ const Login = ({ navigation }: NavProps) => {
   const { t } = useTranslation();
 
   const setID = (id: string) => {
-    if (new RegExp(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i).test(id)) {
+    if (new RegExp("^(\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\}{0,1})$").test(id)) {
       navigation.popToTop();
       navigation.dispatch(StackActions.replace(AUTH));
+    }else {
+      onErrorMessage('Not valid!')
     }
   };
 

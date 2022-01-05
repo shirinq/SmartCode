@@ -9,7 +9,7 @@ import Authentication from './authentication/init';
 import Home from './home';
 import Code from './Code';
 import { NativeStackScreenProps } from 'react-native-screens/native-stack';
-import { getLocale } from '../asyncStorage';
+import { getLocale, getToken } from '../asyncStorage';
 import { useDispatch } from 'react-redux';
 import { AppSettingActions } from '../redux/slice/AppSetting';
 import { _Direction } from '../model/StoreModels';
@@ -22,12 +22,13 @@ export type RootStackParamList = {
   LoginUserPass: undefined,
   Authentication: undefined,
   Home: undefined,
-  Code: undefined,
+  Code: { title: string, pinTitle: string, code: number, isRegister:boolean },
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 export type NavProps = NativeStackScreenProps<RootStackParamList, typeof SPLASH | typeof LOGIN | typeof LOGIN_UP | typeof AUTH | typeof CODE | typeof HOME>
+export type CodeProps = NativeStackScreenProps<RootStackParamList, typeof CODE>
 
 const Navigation = () => {
   const dispatch = useDispatch();

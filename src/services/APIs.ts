@@ -1,4 +1,4 @@
-export const _URL = 'https://api.adaaro.com:8080/smartcode/api/';
+export const _URL = 'https://api.adaaro.com/smartcode/api/';
 
 export const AUTHENTICATION = 'Authentication/smartcode/';
 

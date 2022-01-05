@@ -58,7 +58,7 @@ export const getToken = async (): Promise<string> => {
 
 export const setToken = async (token: string) => {
   try {
-    await AsyncStorage.setItem(LOCALE, token);
+    await AsyncStorage.setItem(TOKEN, token);
   } catch (e) {
   }
 };

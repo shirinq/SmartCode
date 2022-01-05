@@ -21,7 +21,7 @@ const BarcodeScanner = ({ visible, setVisible, setScan }: Props) => {
 
   return (
     <Overlay isVisible={visible} overlayStyle={{ backgroundColor: 'transparent', margin: 16 }} onBackdropPress={() => setVisible(false)}>
-      <QRCodeScanner onRead={e => onSuccess(e)} showMarker markerStyle={{ borderColor: SUCCESS }}
+      <QRCodeScanner onRead={e => onSuccess(e)} showMarker markerStyle={{ borderColor: SUCCESS, borderRadius:8 }}
                      bottomContent={<Button buttonStyle={{ backgroundColor: SUCCESS }} onPress={() => setVisible(false)} containerStyle={{ width: '100%' }}
                                             titleStyle={{ color: BLACK }} title={t('close')} />} />
     </Overlay>
